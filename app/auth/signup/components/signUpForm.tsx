@@ -13,8 +13,7 @@ import { signUpWithEmailAndPassword } from '@/lib/actions/sign-up-email'
 import { signUpFormSchema } from '@/lib/validation'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-
-import { Input } from './ui/input'
+import { Input } from '@/components/ui/input'
 
 export const SignUpForm = () => {
     const [loading, setLoading] = useState(false)
@@ -49,7 +48,7 @@ export const SignUpForm = () => {
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className='border w-72 space-y-4 rounded-xl p-5 '>
+            <form onSubmit={form.handleSubmit(onSubmit)} className='border space-y-4 rounded-xl p-5 '>
                 <div className='space-y-2 text-center'>
                     <span className='text-2xl font-bold'>{t('title')}</span>
                     <p>{t('slogan')}</p>

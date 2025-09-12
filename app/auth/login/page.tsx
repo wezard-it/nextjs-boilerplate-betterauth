@@ -3,15 +3,16 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
 
 import { Routes } from '@/config/routes'
-import { LogInForm } from '@/components/logInForm'
-import { SignInOauthButton } from '@/components/sign-in-outh'
+import { SignInOauthButton } from '@/components/sign-in-oauth'
+
+import { LogInForm } from './components/logInForm'
 
 export default async function logInPage() {
     const t = await getTranslations('LoginPage')
     return (
-        <main className='flex min-h-screen flex-col items-center justify-between p-24'>
-            <div className='space-y-4'>
-                <div className='flex justify-between gap-5 mx-2'>
+        <main className='flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10'>
+            <div className='flex w-full max-w-sm flex-col gap-6'>
+                <div className='flex items-center gap-2 justify-between font-medium'>
                     <Link href={Routes.home}>
                         <div className='flex'>
                             <ChevronLeft /> {t('home')}
@@ -23,14 +24,14 @@ export default async function logInPage() {
                         </div>
                     </Link>
                 </div>
+
                 <LogInForm />
 
                 <hr className='max-w-sm' />
 
-                <div className='flex flex-col max-w-sm gap-4'>
-                    <SignInOauthButton provider='google' signUp={false} />
-
-                    <SignInOauthButton provider='github' signUp={false} />
+                <div className='flex justify-around gap-4'>
+                    <SignInOauthButton provider='google' signUp={false} className='flex w-full' />
+                    <SignInOauthButton provider='github' signUp={false} className='flex w-full' />
                 </div>
             </div>
         </main>

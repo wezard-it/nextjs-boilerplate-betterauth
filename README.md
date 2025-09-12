@@ -2,7 +2,19 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+Install all packages:
+
+```bash
+pnpm install
+```
+
+Initialize the Prism server:
+
+```bash
+pnpm dlx prisma generate
+```
+
+Run the development server:
 
 ```bash
 pnpm dev
@@ -12,7 +24,7 @@ We use pnpm in webprojects.
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/(dashboard)/(home)/page.tsx`. The page auto-updates as you edit the file.
+You can start editing the page by modifying `app/(home)/page.tsx`. The page auto-updates as you edit the file.
 
 ## Learn More
 
@@ -36,11 +48,8 @@ This is the folder structure to maintain across projects.
 ```bash
 .
 ├── app
-│   ├── (dashboard)
-│   │   ├── (home)
-│   │   │   └── page.tsx
-│   │   └── profile
-│   │       └── page.tsx
+│   ├── (home)
+│   │   └── page.tsx
 │   ├── api
 │   │   ├── auth
 │   │   │   └── [...all]
@@ -49,47 +58,68 @@ This is the folder structure to maintain across projects.
 │   │       └── route.tsx
 │   ├── auth
 │   │   ├── login
+│   │   │   ├── components
+│   │   │   │   └── logInForm.tsx
 │   │   │   └── page.tsx
 │   │   └── signup
+│   │       ├── components
+│   │       │   └── signUpForm.tsx
 │   │       └── page.tsx
 │   ├── favicon.ico
-│   └── layout.tsx
+│   ├── layout.tsx
+│   └── profile
+│       └── page.tsx
 ├── commitlint.config.cjs
 ├── components
-│   ├── logInForm.tsx
-│   ├── sign-in-outh.tsx
+│   ├── sign-in-oauth.tsx # for single components we use a tsx file under components
 │   ├── sign-out-button.tsx
-│   ├── signUpForm.tsx
-│   └── ui/
+│   └── ui
+│       ├── button.tsx
+│       ├── card.tsx
+│       ├── chart.tsx
+│       ├── form.tsx
+│       ├── input.tsx
+│       ├── label.tsx
+│       └── sonner.tsx
 ├── components.json
-├── config
+├── config # all file of config should fall under this folder
 │   ├── locale
 │   │   ├── i18n.ts
 │   │   └── index.ts
-│   └── routes.tsx
+│   └── routes.tsx # all the routes of the application.
+├── env.example # an example of what the .env file should look like
 ├── lib
-│   ├── actions
+│   ├── actions # should be atomized based on needs.
 │   │   ├── sign-in-email.ts
 │   │   └── sign-up-email.ts
-│   ├── auth-client.ts
-│   ├── auth.ts
+│   ├── auth-client.ts # Better Auth authentication management file
+│   ├── auth.ts # Better Auth database connection config.
 │   ├── locale.ts
-│   ├── utils.ts
-│   └── validation.ts
-├── prisma
-│   └── schema.prisma
+│   ├── utils.ts # general utils shared across application
+│   └── validation.ts # Zod validation schema for forms
+├── prisma 
+│   ├── migrations
+│   └── schema.prisma # configuration file that defines the database data models
 ├── public
-│   ├── locales
+│   ├── locales 
 │   │   ├── en
+│   │   │   └── translation.json
 │   │   └── it
+│   │       └── translation.json
 │   ├── next.svg
 │   └── vercel.svg
 ├── styles
 │   └── globals.css
-└── types/
+├── tailwind.config.ts
+├── tsconfig.json
+└── types
+    ├── api.ts
+    ├── auth.ts
+    ├── next-auth.d.ts
+    └── shared.ts
 ```
 
-# Useful docs && repo
+# Learn More
 
 -   [Zod](https://zod.dev/)
 -   [Better-Auth.js](https://better-auth.com/)
@@ -108,6 +138,6 @@ This is the folder structure to maintain across projects.
 to use this as a boilerplate run
 
 ```bash
-create-next-app --example https://github.com/wezard-it/nextjs-boilerplate
+create-next-app --example https://github.com/wezard-it/nextjs-boilerplate-betterauth.git
 
 ```

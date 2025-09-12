@@ -13,8 +13,7 @@ import { signInWithEmailAndPassword } from '@/lib/actions/sign-in-email'
 import { signInFormSchema } from '@/lib/validation'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-
-import { Input } from './ui/input'
+import { Input } from '@/components/ui/input'
 
 export const LogInForm = () => {
     const [loading, setLoading] = useState(false)
@@ -47,7 +46,7 @@ export const LogInForm = () => {
 
     return (
         <Form {...form}>
-            <form onSubmit={onSubmit} className='border w-72 space-y-4 rounded-xl p-5 '>
+            <form onSubmit={onSubmit} className='border space-y-4 rounded-xl p-5 '>
                 <div className='space-y-2 text-center'>
                     <span className=' text-2xl font-bold'>{t('title')}</span>
                     <p>{t('slogan')}</p>
