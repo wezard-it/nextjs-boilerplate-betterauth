@@ -11,11 +11,11 @@ export const signUpFormSchema = z
         name: z.string().min(1, 'Il nome è obbligatorio.'),
         email: z.string().email('Inserisci un indirizzo email valido.'),
         password: z.string().min(8, 'La password deve contenere almeno 8 caratteri.'),
-        confirmPassword: z.string().min(8, 'La password deve contenere almeno 8 caratteri.'),
+        confirm_password: z.string(),
     })
-    .refine((data) => data.password === data.confirmPassword, {
+    .refine((data) => data.password === data.confirm_password, {
         message: 'Le password non corrispondono.',
-        path: ['confirmPassword'],
+        path: ['confirm_password'],
     })
 
 export const signInFormSchema = z.object({

@@ -1,4 +1,5 @@
 import { headers } from 'next/headers'
+import Image from 'next/image'
 import { getTranslations } from 'next-intl/server'
 
 import { auth } from '@/lib/auth'
@@ -21,8 +22,13 @@ export default async function profilePage() {
                 <div className='flex gap-3'>
                     {session.user.image ? (
                         <div className='my-auto'>
-                            {' '}
-                            <img className=' size-14 rounded-full ' src={session.user.image}></img>
+                            <Image
+                                className='size-14 rounded-full'
+                                src={session.user.image}
+                                alt={`${session.user.name}'s profile picture`}
+                                width={56}
+                                height={56}
+                            />
                         </div>
                     ) : (
                         <></>

@@ -28,7 +28,7 @@ export const SignUpForm = () => {
             name: '',
             email: '',
             password: '',
-            confirmPassword: '',
+            confirm_password: '',
         },
     })
 
@@ -99,7 +99,7 @@ export const SignUpForm = () => {
 
                 <FormField
                     control={form.control}
-                    name='confirmPassword'
+                    name='confirm_password'
                     render={({ field }) => (
                         <FormItem className='space-y-2'>
                             <FormLabel>{t('confirm_password')}</FormLabel>

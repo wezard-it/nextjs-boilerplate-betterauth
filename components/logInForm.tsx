@@ -24,13 +24,14 @@ export const LogInForm = () => {
 
     const form = useForm<z.infer<typeof signInFormSchema>>({
         resolver: zodResolver(signInFormSchema),
+        reValidateMode: 'onSubmit',
         defaultValues: {
             email: '',
             password: '',
         },
     })
 
-    const onSubmit = async (data: z.infer<typeof signInFormSchema>) => {
+    const onSubmit = form.handleSubmit(async (data: z.infer<typeof signInFormSchema>) => {
         setLoading(true)
 
         const res = await signInWithEmailAndPassword(data.email, data.password)
@@ -42,11 +43,11 @@ export const LogInForm = () => {
             toast.success('Login successful. Good to have you back.')
             router.push(Routes.profile)
         }
-    }
+    })
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className='border w-72 space-y-4 rounded-xl p-5 '>
+            <form onSubmit={onSubmit} className='border w-72 space-y-4 rounded-xl p-5 '>
                 <div className='space-y-2 text-center'>
                     <span className=' text-2xl font-bold'>{t('title')}</span>
                     <p>{t('slogan')}</p>
@@ -86,7 +87,4 @@ export const LogInForm = () => {
             </form>
         </Form>
     )
-}
-function logInWithEmailAndPassword(email: string, password: string) {
-    throw new Error('Function not implemented.')
 }

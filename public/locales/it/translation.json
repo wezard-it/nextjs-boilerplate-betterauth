@@ -9,7 +9,12 @@
         "password": "Password",
         "password_placeholder": "Inserisci la tua password",
         "logging_in": "Accesso in corso...",
-        "log_in": "Accedi"
+        "log_in": "Accedi",
+        "errors": {
+       "min_error": "Il campo deve contenere almeno un'opzione",
+       "length_error": "Il campo è troppo corto",
+       "password_not_matching": "Le password non corrispondono"
+    }
     },
     "SignUp": {
         "title": "Registrati",

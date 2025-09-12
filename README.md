@@ -12,7 +12,7 @@ We use pnpm in webprojects.
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+You can start editing the page by modifying `app/(dashboard)/(home)/page.tsx`. The page auto-updates as you edit the file.
 
 ## Learn More
 
@@ -35,58 +35,64 @@ This is the folder structure to maintain across projects.
 
 ```bash
 .
-├── app/
-│ └── routes/
-│ ├── components
-│ ├── page.tsx
-│ ├── loading.tsx
-│ ├── layout.tsx
-│ └── error.tsx
-├── components/
-│ ├── ui/
-│ │ └── shadcn-components
-│ ├── foo-components/ # for composed components we use a index export under a folder named after the components.
-│ │ ├── foo-component-1
-│ │ ├── foo-component-2
-│ │ └── index.tsx
-│ ├── bar-component.tsx # for single components we use a tsx file under components
-│ ├── providers
-│ └── hooks
-├── config/ # all file of config should fall under this folder
-│ ├── routes.ts # all the routes of the application.
-│ ├── navigation.ts # the config behind the navigation menu across the app (sidebar, navbar, etc)
-│ └── stripe.ts # eventual configuration of Stripe
-├── lib/
-│ ├── actions/ # should be atomized based on needs.
-│ │ ├── actions-1.ts
-│ │ ├── actions-2.ts
-│ │ └── ....
-│ ├── sdk/ # should be atomized based on needs.
-│ │ ├── sdk-1.ts
-│ │ ├── sdk-2.ts
-│ │ └── ....
-│ ├── auth.ts(next-auth) # Auth.js base configuration
-│ ├── validation.ts # Zod validation schema for forms
-│ ├── utils.ts # General utils shared across application
-│ ├── locale.ts
-│ └── places.ts
-├── public/
-│ ├── images
-│ └── locale/
-│ └── {{locale}}/ # If you add a locale you have to add this to supported locale in lib/locale
-│ └── translation.json
-├── styles/
-│ └── global.css
+├── app
+│   ├── (dashboard)
+│   │   ├── (home)
+│   │   │   └── page.tsx
+│   │   └── profile
+│   │       └── page.tsx
+│   ├── api
+│   │   ├── auth
+│   │   │   └── [...all]
+│   │   │       └── route.ts
+│   │   └── og
+│   │       └── route.tsx
+│   ├── auth
+│   │   ├── login
+│   │   │   └── page.tsx
+│   │   └── signup
+│   │       └── page.tsx
+│   ├── favicon.ico
+│   └── layout.tsx
+├── commitlint.config.cjs
+├── components
+│   ├── logInForm.tsx
+│   ├── sign-in-outh.tsx
+│   ├── sign-out-button.tsx
+│   ├── signUpForm.tsx
+│   └── ui/
+├── components.json
+├── config
+│   ├── locale
+│   │   ├── i18n.ts
+│   │   └── index.ts
+│   └── routes.tsx
+├── lib
+│   ├── actions
+│   │   ├── sign-in-email.ts
+│   │   └── sign-up-email.ts
+│   ├── auth-client.ts
+│   ├── auth.ts
+│   ├── locale.ts
+│   ├── utils.ts
+│   └── validation.ts
+├── prisma
+│   └── schema.prisma
+├── public
+│   ├── locales
+│   │   ├── en
+│   │   └── it
+│   ├── next.svg
+│   └── vercel.svg
+├── styles
+│   └── globals.css
 └── types/
-├── foo-types.ts
-├── bar-types.ts
-└── foobar-types.ts
 ```
 
 # Useful docs && repo
 
 -   [Zod](https://zod.dev/)
--   [Auth.js](https://authjs.dev/)
+-   [Better-Auth.js](https://better-auth.com/)
 -   [Stripe](https://docs.stripe.com/)
 -   [next-video](https://github.com/muxinc/next-video)
     Next video is a react component for adding video to your next.js application. It extends both the html video element and your Next app with features for automatic video optimization.
