@@ -9,7 +9,7 @@ import { toast } from 'sonner'
 import { z } from 'zod'
 
 import { Routes } from '@/config/routes'
-import { signUpWithEmailAndPassword } from '@/lib/actions/sign-up-email'
+import { signUpWithEmailAndPassword } from '@/lib/actions/auth'
 import { signUpFormSchema } from '@/lib/validation'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
@@ -19,7 +19,7 @@ export const SignUpForm = () => {
     const [loading, setLoading] = useState(false)
     const router = useRouter()
 
-    const t = useTranslations('SignUp')
+    const t = useTranslations()
 
     const form = useForm<z.infer<typeof signUpFormSchema>>({
         resolver: zodResolver(signUpFormSchema),
@@ -36,12 +36,12 @@ export const SignUpForm = () => {
 
         const res = await signUpWithEmailAndPassword(data.name, data.email, data.password)
 
-        if (res.error) {
+        if (res?.error) {
             toast.error(t(`errors.${res.error}`))
             setLoading(false)
             return
         } else {
-            toast.success(t(`Registrazione completata`))
+            toast.success(t('sign_up.success'))
             router.replace(Routes.login)
         }
     }
@@ -50,8 +50,8 @@ export const SignUpForm = () => {
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className='border space-y-4 rounded-xl p-5 '>
                 <div className='space-y-2 text-center'>
-                    <span className='text-2xl font-bold'>{t('title')}</span>
-                    <p>{t('slogan')}</p>
+                    <span className='text-2xl font-bold'>{t('sign_up.title')}</span>
+                    <p>{t('sign_up.slogan')}</p>
                 </div>
 
                 <FormField
@@ -59,9 +59,9 @@ export const SignUpForm = () => {
                     name='name'
                     render={({ field }) => (
                         <FormItem className='space-y-2'>
-                            <FormLabel>{t('name')}</FormLabel>
+                            <FormLabel>{t('sign_up.name')}</FormLabel>
                             <FormControl>
-                                <Input placeholder={t('name_placeholder')} {...field} />
+                                <Input placeholder={t('sign_up.name_placeholder')} {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -73,9 +73,9 @@ export const SignUpForm = () => {
                     name='email'
                     render={({ field }) => (
                         <FormItem className='space-y-2'>
-                            <FormLabel>{t('email')}</FormLabel>
+                            <FormLabel>{t('sign_up.email')}</FormLabel>
                             <FormControl>
-                                <Input placeholder={t('email_placeholder')} type='email' {...field} />
+                                <Input placeholder={t('sign_up.email_placeholder')} type='email' {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -87,9 +87,9 @@ export const SignUpForm = () => {
                     name='password'
                     render={({ field }) => (
                         <FormItem className='space-y-2'>
-                            <FormLabel>{t('password')}</FormLabel>
+                            <FormLabel>{t('sign_up.password')}</FormLabel>
                             <FormControl>
-                                <Input placeholder={t('password_placeholder')} type='password' {...field} />
+                                <Input placeholder={t('sign_up.password_placeholder')} type='password' {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -101,9 +101,13 @@ export const SignUpForm = () => {
                     name='confirm_password'
                     render={({ field }) => (
                         <FormItem className='space-y-2'>
-                            <FormLabel>{t('confirm_password')}</FormLabel>
+                            <FormLabel>{t('sign_up.confirm_password')}</FormLabel>
                             <FormControl>
-                                <Input placeholder={t('confirm_password_placeholder')} type='password' {...field} />
+                                <Input
+                                    placeholder={t('sign_up.confirm_password_placeholder')}
+                                    type='password'
+                                    {...field}
+                                />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -111,7 +115,7 @@ export const SignUpForm = () => {
                 />
 
                 <Button className='w-full' type='submit' disabled={loading}>
-                    {loading ? t('signing_up') : t('sign_up')}
+                    {loading ? t('sign_up.signing_up') : t('sign_up.sign_up')}
                 </Button>
             </form>
         </Form>

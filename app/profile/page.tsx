@@ -2,7 +2,7 @@ import { headers } from 'next/headers'
 import Image from 'next/image'
 import { getTranslations } from 'next-intl/server'
 
-import { auth } from '@/lib/auth'
+import { auth } from '@/config/auth'
 import { SignOutButton } from '@/components/sign-out-button'
 
 export default async function profilePage() {
@@ -10,10 +10,10 @@ export default async function profilePage() {
         headers: await headers(),
     })
 
-    const t = await getTranslations('Profile')
+    const t = await getTranslations()
 
     if (!session) {
-        return <p className='text-destructive'>{t('unauthorized')}</p>
+        return <p className='text-destructive'>{t('profile.unauthorized')}</p>
     }
 
     return (
@@ -33,11 +33,11 @@ export default async function profilePage() {
                     ) : (
                         <></>
                     )}
-                    <h1 className='flex text-3xl font-bold my-auto '>{t('title')}</h1>
+                    <h1 className='flex text-3xl font-bold my-auto '>{t('profile.title')}</h1>
                 </div>
                 <SignOutButton />
             </div>
-            <span>{t('welcome_message', { name: session.user.name })}</span>
+            <span>{t('profile.welcome_message', { name: session.user.name })}</span>
             <pre className='text-sm overflow-clip'>{JSON.stringify(session, null, 2)}</pre>
         </main>
     )

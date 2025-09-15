@@ -4,17 +4,17 @@ import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 
+import { authClient } from '@/config/auth-client'
 import { Routes } from '@/config/routes'
-import { signOut } from '@/lib/auth-client'
 
 import { Button } from './ui/button'
 
 export const SignOutButton = () => {
     const router = useRouter()
-    const t = useTranslations('SignOutButton')
+    const t = useTranslations()
 
     const handleLogOut = async () => {
-        await signOut({
+        await authClient.signOut({
             fetchOptions: {
                 onError: (ctx) => {
                     toast.error(ctx.error.message)
@@ -26,5 +26,5 @@ export const SignOutButton = () => {
         })
     }
 
-    return <Button onClick={handleLogOut}>{t('log_out')}</Button>
+    return <Button onClick={handleLogOut}>{t('login.log_out')}</Button>
 }

@@ -8,7 +8,7 @@ import { SignInOauthButton } from '@/components/sign-in-oauth'
 import { SignUpForm } from './components/signUpForm'
 
 export default async function signUpPage() {
-    const t = await getTranslations('SignUpPage')
+    const t = await getTranslations()
 
     return (
         <main className='flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10'>
@@ -16,12 +16,12 @@ export default async function signUpPage() {
                 <div className='flex items-center gap-2 justify-between font-medium'>
                     <Link href={Routes.home}>
                         <div className='flex'>
-                            <ChevronLeft /> {t('home')}
+                            <ChevronLeft /> {t('sign_up_page.home')}
                         </div>
                     </Link>
                     <Link href={Routes.login}>
                         <div className='flex'>
-                            {t('login_link')} <ChevronRight />
+                            {t('sign_up_page.login_link')} <ChevronRight />
                         </div>
                     </Link>
                 </div>

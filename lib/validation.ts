@@ -19,6 +19,6 @@ export const signUpFormSchema = z
     })
 
 export const signInFormSchema = z.object({
-    email: z.string().email("Inserisci un'email valida."),
-    password: z.string().min(8, 'Password errata.'),
+    email: z.string().email(),
+    password: z.string(),
 })

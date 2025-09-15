@@ -51,73 +51,38 @@ This is the folder structure to maintain across projects.
 │   ├── (home)
 │   │   └── page.tsx
 │   ├── api
-│   │   ├── auth
-│   │   │   └── [...all]
-│   │   │       └── route.ts
-│   │   └── og
-│   │       └── route.tsx
 │   ├── auth
 │   │   ├── login
-│   │   │   ├── components
-│   │   │   │   └── logInForm.tsx
-│   │   │   └── page.tsx
 │   │   └── signup
-│   │       ├── components
-│   │       │   └── signUpForm.tsx
-│   │       └── page.tsx
-│   ├── favicon.ico
-│   ├── layout.tsx
 │   └── profile
-│       └── page.tsx
-├── commitlint.config.cjs
 ├── components
 │   ├── sign-in-oauth.tsx # for single components we use a tsx file under components
 │   ├── sign-out-button.tsx
 │   └── ui
-│       ├── button.tsx
-│       ├── card.tsx
-│       ├── chart.tsx
-│       ├── form.tsx
-│       ├── input.tsx
-│       ├── label.tsx
-│       └── sonner.tsx
-├── components.json
+│       └── shadcn-components
 ├── config # all file of config should fall under this folder
+│   ├── auth-client.ts # better auth authentication management file
+│   ├── auth.ts # better auth database connection config.
 │   ├── locale
-│   │   ├── i18n.ts
-│   │   └── index.ts
+│   ├── prisma.ts
 │   └── routes.tsx # all the routes of the application.
-├── env.example # an example of what the .env file should look like
 ├── lib
 │   ├── actions # should be atomized based on needs.
-│   │   ├── sign-in-email.ts
-│   │   └── sign-up-email.ts
-│   ├── auth-client.ts # Better Auth authentication management file
-│   ├── auth.ts # Better Auth database connection config.
+│   │   └── auth.ts
+│   ├── generated
+│   │   └── prisma
 │   ├── locale.ts
 │   ├── utils.ts # general utils shared across application
 │   └── validation.ts # Zod validation schema for forms
-├── prisma 
-│   ├── migrations
-│   └── schema.prisma # configuration file that defines the database data models
+├── prisma
+│   └── schema.prisma  # configuration file that defines the database data models
 ├── public
-│   ├── locales 
-│   │   ├── en
-│   │   │   └── translation.json
-│   │   └── it
-│   │       └── translation.json
-│   ├── next.svg
-│   └── vercel.svg
+│   └──  locales # all translation file for i18n are under this folder
 ├── styles
-│   └── globals.css
-├── tailwind.config.ts
-├── tsconfig.json
 └── types
-    ├── api.ts
-    ├── auth.ts
-    ├── next-auth.d.ts
-    └── shared.ts
+
 ```
+
 
 # Learn More
 

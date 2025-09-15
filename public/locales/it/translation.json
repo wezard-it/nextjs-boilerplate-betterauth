@@ -1,7 +1,7 @@
 {
     "welcome": "Benvenuti",
     "slogan": "NextJS + Shadcn/ui + TailwindCSS + i18n + Better-Auth",
-    "Login": {
+    "login": {
         "title": "Accedi",
         "slogan": "Bentornato!",
         "email": "Email",
@@ -10,13 +10,11 @@
         "password_placeholder": "Inserisci la tua password",
         "logging_in": "Accesso in corso...",
         "log_in": "Accedi",
-        "errors": {
-       "min_error": "Il campo deve contenere almeno un'opzione",
-       "length_error": "Il campo è troppo corto",
-       "password_not_matching": "Le password non corrispondono"
-    }
+        "success": "Accesso effettuato con successo.",
+        "log_out": "Esci",
+        "action":"{action} con"
     },
-    "SignUp": {
+    "sign_up": {
         "title": "Registrati",
         "slogan": "Benvenuto!",
         "name": "Nome",
@@ -28,28 +26,26 @@
         "confirm_password": "Conferma Password",
         "confirm_password_placeholder": "Conferma la password",
         "signing_up": "Registrazione in corso...",
-        "sign_up": "Registrati"
+        "sign_up": "Registrati",
+        "success":"Registrazione completata"
     },
-    "Home": {
+    "home": {
         "log_in_to_continue": "Accedi per continuare",
         "log_in": "Accedi",
         "or": "o",
         "sign_up": "Registrati"
     },
-    "Profile": {
+    "profile": {
         "unauthorized": "Non autorizzato",
         "title": "Profilo",
         "welcome_message": "Bentornato {name} !!!"
     },
-    "LoginPage": {
+    "login_page": {
         "home": "Home",
         "signup_link": "Registrati"
     },
-    "SignUpPage": {
+    "sign_up_page": {
         "home": "Home",
         "login_link": "Accedi"
-    },
-    "SignOutButton": {
-        "log_out": "Esci"
     }
 }

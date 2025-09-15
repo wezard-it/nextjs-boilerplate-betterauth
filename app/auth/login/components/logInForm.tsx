@@ -9,7 +9,7 @@ import { toast } from 'sonner'
 import { z } from 'zod'
 
 import { Routes } from '@/config/routes'
-import { signInWithEmailAndPassword } from '@/lib/actions/sign-in-email'
+import { signInWithEmailAndPassword } from '@/lib/actions/auth'
 import { signInFormSchema } from '@/lib/validation'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
@@ -19,7 +19,7 @@ export const LogInForm = () => {
     const [loading, setLoading] = useState(false)
     const router = useRouter()
 
-    const t = useTranslations('Login')
+    const t = useTranslations()
 
     const form = useForm<z.infer<typeof signInFormSchema>>({
         resolver: zodResolver(signInFormSchema),
@@ -35,11 +35,11 @@ export const LogInForm = () => {
 
         const res = await signInWithEmailAndPassword(data.email, data.password)
 
-        if (res.error) {
+        if (res?.error) {
             toast.error(res.error)
             setLoading(false)
         } else {
-            toast.success('Login successful. Good to have you back.')
+            toast.success(t('login.success'))
             router.push(Routes.profile)
         }
     })
@@ -48,8 +48,8 @@ export const LogInForm = () => {
         <Form {...form}>
             <form onSubmit={onSubmit} className='border space-y-4 rounded-xl p-5 '>
                 <div className='space-y-2 text-center'>
-                    <span className=' text-2xl font-bold'>{t('title')}</span>
-                    <p>{t('slogan')}</p>
+                    <span className=' text-2xl font-bold'>{t('login.title')}</span>
+                    <p>{t('login.slogan')}</p>
                 </div>
 
                 <FormField
@@ -57,9 +57,9 @@ export const LogInForm = () => {
                     name='email'
                     render={({ field }) => (
                         <FormItem className='space-y-2'>
-                            <FormLabel>{t('email')}</FormLabel>
+                            <FormLabel>{t('login.email')}</FormLabel>
                             <FormControl>
-                                <Input placeholder={t('email_placeholder')} type='email' {...field} />
+                                <Input placeholder={t('login.email_placeholder')} type='email' {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -71,9 +71,9 @@ export const LogInForm = () => {
                     name='password'
                     render={({ field }) => (
                         <FormItem className='space-y-2'>
-                            <FormLabel>{t('password')}</FormLabel>
+                            <FormLabel>{t('login.password')}</FormLabel>
                             <FormControl>
-                                <Input placeholder={t('password_placeholder')} type='password' {...field} />
+                                <Input placeholder={t('login.password_placeholder')} type='password' {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -81,7 +81,7 @@ export const LogInForm = () => {
                 />
 
                 <Button className='w-full' type='submit' disabled={loading}>
-                    {loading ? t('logging_in') : t('log_in')}
+                    {loading ? t('login.logging_in') : t('login.log_in')}
                 </Button>
             </form>
         </Form>

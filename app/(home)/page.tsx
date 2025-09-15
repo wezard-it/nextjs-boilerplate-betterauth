@@ -17,17 +17,17 @@ export default async function Home() {
             </div>
             <div className=' max-w-sm  gap-5'>
                 <div className='grid grid-row-2 w-full justify-center border rounded-lg p-5 gap-5 '>
-                    <span className=' my-auto '>{t('Home.log_in_to_continue')}</span>
+                    <span className=' my-auto '>{t('home.log_in_to_continue')}</span>
                     <Button>
-                        <Link href={Routes.login}>{t('Home.log_in')}</Link>
+                        <Link href={Routes.login}>{t('home.log_in')}</Link>
                     </Button>
                     <div className='flex items-center'>
                         <div className='h-px flex-1 bg-border' />
-                        <span className='px-3 text-sm text-muted-foreground'>{t('Home.or')}</span>
+                        <span className='px-3 text-sm text-muted-foreground'>{t('home.or')}</span>
                         <div className='h-px flex-1 bg-border' />
                     </div>
                     <Button>
-                        <Link href={Routes.signup}>{t('Home.sign_up')}</Link>
+                        <Link href={Routes.signup}>{t('home.sign_up')}</Link>
                     </Button>
                 </div>
             </div>
