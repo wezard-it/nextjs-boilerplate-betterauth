@@ -7,24 +7,26 @@ import { auth } from '@/config/auth'
 
 export async function signInWithEmailAndPassword(email: string, password: string) {
     try {
-        await auth.api.signInEmail({
-            headers: await headers(),
+        const res = await auth.api.signInEmail({
+            headers: headers(),
             body: {
                 email,
                 password,
             },
         })
-        return
+
+        return { success: true, data: { res } }
     } catch (err) {
         if (err instanceof APIError) {
-            return { error: err.message }
+            return { success: false, error: err.message }
         }
+        return { success: false, error: 'An unexpected error occurred' }
     }
 }
 
 export async function signUpWithEmailAndPassword(name: string, email: string, password: string) {
     try {
-        await auth.api.signUpEmail({
+        const res = await auth.api.signUpEmail({
             body: {
                 name,
                 email,
@@ -32,10 +34,11 @@ export async function signUpWithEmailAndPassword(name: string, email: string, pa
             },
         })
 
-        return
+        return { success: true, data: { res } }
     } catch (err) {
         if (err instanceof APIError) {
-            return { error: err.message }
+            return { success: false, error: err.message }
         }
+        return { success: false, error: 'An unexpected error occurred' }
     }
 }

@@ -6,3 +6,4 @@ export const Routes = {
 }
 
 export const authRoutes = [Routes.signup, Routes.login]
+export const protectedRoutes = [Routes.profile]

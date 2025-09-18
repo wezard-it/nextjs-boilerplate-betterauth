@@ -3,13 +3,27 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
 
 import { Routes } from '@/config/routes'
+import { signUpWithEmailAndPassword } from '@/lib/actions/auth'
 import { SignInOauthButton } from '@/components/sign-in-oauth'
 
 import { SignUpForm } from './components/signUpForm'
 
 export default async function signUpPage() {
-    const t = await getTranslations()
+    const handleSignup = async (name: string, email: string, password: string) => {
+        'use server'
 
+        const res = await signUpWithEmailAndPassword(name, email, password)
+        if (res?.error) {
+            return { success: false, error: res.error }
+        }
+
+        return {
+            success: true,
+            data: res,
+        }
+    }
+
+    const t = await getTranslations()
     return (
         <main className='flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10'>
             <div className='flex w-full max-w-sm flex-col gap-6'>
@@ -26,7 +40,7 @@ export default async function signUpPage() {
                     </Link>
                 </div>
 
-                <SignUpForm />
+                <SignUpForm onSignup={handleSignup} />
 
                 <hr className='max-w-sm' />
 

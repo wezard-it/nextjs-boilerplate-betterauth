@@ -22,3 +22,44 @@ export type ApiResponseError = {
 }
 
 export type ApiResponse<T> = ApiResponseSuccess<T> | ApiResponseError
+
+//Better Auth
+export type SigUpApiResponse = {
+    success: boolean
+    error?: string | undefined
+    data?: {
+        res: {
+            token: string | null
+            user: {
+                id: string
+                email: string
+                name: string
+                image: string | null | undefined
+                emailVerified: boolean
+                createdAt: Date
+                updatedAt: Date
+            }
+        }
+    }
+}
+
+export type LoginApiResponse = {
+    success: boolean
+    error?: string
+    data?: {
+        res: {
+            redirect: boolean
+            token: string
+            url: string | undefined
+            user: {
+                id: string
+                email: string
+                name: string
+                image: string | null | undefined
+                emailVerified: boolean
+                createdAt: Date
+                updatedAt: Date
+            }
+        }
+    }
+}

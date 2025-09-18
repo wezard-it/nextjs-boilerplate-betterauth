@@ -8,14 +8,20 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
+import { LoginApiResponse } from '@/types/api'
 import { Routes } from '@/config/routes'
-import { signInWithEmailAndPassword } from '@/lib/actions/auth'
 import { signInFormSchema } from '@/lib/validation'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 
-export const LogInForm = () => {
+type LoginResponse = { success: boolean; error?: string; data?: LoginApiResponse }
+
+type SignInFormProps = {
+    onLogin: (email: string, password: string) => Promise<LoginResponse>
+}
+
+export const LogInForm = ({ onLogin }: SignInFormProps) => {
     const [loading, setLoading] = useState(false)
     const router = useRouter()
 
@@ -30,15 +36,17 @@ export const LogInForm = () => {
         },
     })
 
-    const onSubmit = form.handleSubmit(async (data: z.infer<typeof signInFormSchema>) => {
+    const onSubmit = form.handleSubmit(async (data) => {
         setLoading(true)
 
-        const res = await signInWithEmailAndPassword(data.email, data.password)
+        const res = await onLogin(data.email, data.password)
 
-        if (res?.error) {
+        if (res.error) {
             toast.error(res.error)
             setLoading(false)
-        } else {
+        }
+
+        if (res.success) {
             toast.success(t('login.success'))
             router.push(Routes.profile)
         }

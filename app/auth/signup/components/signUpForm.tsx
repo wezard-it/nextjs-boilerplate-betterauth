@@ -8,14 +8,20 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
+import { SigUpApiResponse } from '@/types/api'
 import { Routes } from '@/config/routes'
-import { signUpWithEmailAndPassword } from '@/lib/actions/auth'
 import { signUpFormSchema } from '@/lib/validation'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 
-export const SignUpForm = () => {
+type SigUpResponse = { success: boolean; error?: string; data?: SigUpApiResponse }
+
+type SignupFormProps = {
+    onSignup: (name: string, email: string, password: string) => Promise<SigUpResponse>
+}
+
+export const SignUpForm = ({ onSignup }: SignupFormProps) => {
     const [loading, setLoading] = useState(false)
     const router = useRouter()
 
@@ -34,7 +40,7 @@ export const SignUpForm = () => {
     const onSubmit = async (data: z.infer<typeof signUpFormSchema>) => {
         setLoading(true)
 
-        const res = await signUpWithEmailAndPassword(data.name, data.email, data.password)
+        const res = await onSignup(data.name, data.email, data.password)
 
         if (res?.error) {
             toast.error(t(`errors.${res.error}`))
